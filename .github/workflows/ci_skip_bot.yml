@@ -3,9 +3,9 @@ name: Comment on PR for Markdown Changes
 on:
   pull_request:
     paths:
-      - - '!**'
       - '**/*.md'
       - '**/*.rst'
+      - '!**'
     types: [opened, edited, synchronize]
 
 jobs:
