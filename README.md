@@ -28,6 +28,8 @@
 
 Testing change to README.
 Another change to README.
+Yet another change to the README
+
 Rich is a Python library for _rich_ text and beautiful formatting in the terminal.
 
 The [Rich API](https://rich.readthedocs.io/en/latest/) makes it easy to add color and style to terminal output. Rich can also render pretty tables, progress bars, markdown, syntax highlighted source code, tracebacks, and more — out of the box.
