@@ -14,18 +14,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Check for Markdown and reStructuredText files
+      - name: Check for changes to documentation files
+        id: check_changes
         run: |
-          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q '\.(md|rst)$'; then
-            echo "Documentation files changed. Triggering comment action."
+          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})
+          if echo "$changed_files" | grep -qE '\.(md|rst)$'; then
+            echo "::set-output name=changes::true"
           else
-            echo "No documentation changed. Skipping comment action."
-            exit 78 # Exit with a neutral status code to indicate no action is needed
+            echo "::set-output name=changes::false"
           fi
 
-      - name: Create comment
+      - name: Add comment to PR
+        if: steps.check_changes.outputs.changes == 'true'
         uses: peter-evans/create-or-update-comment@v4
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.number }}
           body: |
             This commit only makes changes to documentation, please use [ci_skip] in future commit messages to save on CI minutes
