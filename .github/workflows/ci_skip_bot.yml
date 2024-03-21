@@ -14,16 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Check for changes to documentation files
-        id: check_changes
-        run: |
-          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})
-          if echo "$changed_files" | grep -qE '\.(md|rst)$'; then
-            echo "::set-output name=changes::true"
-          else
-            echo "::set-output name=changes::false"
-          fi
-
       - name: Add comment to PR
         if: steps.check_changes.outputs.changes == 'true'
         uses: peter-evans/create-or-update-comment@v4
