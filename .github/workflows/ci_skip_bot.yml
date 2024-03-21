@@ -1,7 +1,7 @@
 name: Comment on PR for Markdown Changes
 
 on:
-  pull_request:
+  push:
     paths:
       - '**/*.md'
       - '**/*.rst'
@@ -12,16 +12,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Check for other changes
-        id: check_changes
-        run: |
-          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | -qE '\.(md|rst)$'; then
-            echo "Other files changed, exiting workflow"
-            exit 0
-          else
-            echo "No other files changed, continuing workflow"
-          fi
 
       - name: Add comment to PR
         uses: peter-evans/create-or-update-comment@v4
