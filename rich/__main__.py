@@ -16,6 +16,7 @@ from rich.text import Text
 
 # testing change to other files
 # another change
+# test
 class ColorBox:
     def __rich_console__(
         self, console: Console, options: ConsoleOptions
