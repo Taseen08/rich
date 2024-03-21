@@ -16,6 +16,8 @@ jobs:
       - name: Check for changes in .md and .rst files
         run: |
           if git diff --name-only ${{ github.event.before }} ${{ github.event.pull_request.head.sha }} | grep -qvE '.*\.(md|rst)$'; then
+            echo "Changes found in files other than .md and .rst:"
+            git diff --name-only ${{ github.event.before }} ${{ github.event.pull_request.head.sha }} | grep -vE '.*\.(md|rst)$'
             echo "Skipping workflow since changes are made to other file types."
             exit 0
           fi
