@@ -31,6 +31,7 @@ Another change to README.
 Yet another change to the README
 Another change
 Another change
+another change
 
 Rich is a Python library for _rich_ text and beautiful formatting in the terminal.
 
