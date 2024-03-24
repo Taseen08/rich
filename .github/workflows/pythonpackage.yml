@@ -39,7 +39,7 @@ jobs:
       - name: Test with pytest (with coverage)
         run: |
           source $VENV
-          pytest tests -v --cov=./rich --cov-report=xml:./coverage.xml --cov-report term-missing
+          pytest tests -v --cov=./rich --cov-report=xml:./coverage.xml --cov-report term-missing --testmon
       - name: Upload code coverage
         uses: codecov/codecov-action@v3
         with:
