@@ -36,6 +36,11 @@ jobs:
         run: |
           source $VENV
           make typecheck
+      - uses: pat-s/always-upload-cache@v2.1.5
+        with:
+          path: .testmondata
+          key: testmon=${{ github.ref_name }}-${{ matrix.python-version }}
+          restore-keys: testmon=${{ matrix.python-version }}-main
       - name: Test with pytest (with coverage)
         run: |
           source $VENV
