@@ -41,8 +41,8 @@ def test_cell_len():
 
 
 def test_cell_len_large_text():
-    assert Text("a" * 10**8).cell_len == 10**8
-    assert Text("😀" * 10**8).cell_len == 10**8
+    assert Text("a" * 10**9).cell_len == 10**9
+    assert Text("😀" * 10**9).cell_len == 10**9
 
 
 def test_bool():

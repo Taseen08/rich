@@ -42,7 +42,7 @@ jobs:
       - name: Cache .pytest_cache directory
         uses: actions/cache@v3
         with:
-          path: .pytest_cache
+          path: tests/.pytest_cache
           key: ${{ runner.os }}-pytest-${{ hashFiles('**/test_*.py') }}
           restore-keys: |
             ${{ runner.os }}-pytest-
