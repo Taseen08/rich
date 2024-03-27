@@ -1,9 +1,11 @@
 name: Test Rich module
 
-on:
-  push:
-    paths:
-      - 'rich/**'
+# on:
+#   push:
+#     paths:
+#       - 'rich/**'
+
+on: [push]
 
 jobs:
   build:
