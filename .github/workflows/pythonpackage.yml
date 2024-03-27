@@ -41,6 +41,7 @@ jobs:
           make typecheck
       - name: Cache .pytest_cache directory
         uses: actions/cache@v3
+        id: pytest-cache
         with:
           path: tests/.pytest_cache
           key: ${{ runner.os }}-pytest-${{ hashFiles('**/test_*.py') }}
