@@ -39,6 +39,13 @@ jobs:
         run: |
           source $VENV
           make typecheck
+      - name: Cache .pytest_cache directory
+        uses: actions/cache@v3
+        with:
+          path: .pytest_cache
+          key: ${{ runner.os }}-pytest-${{ hashFiles('**/test_*.py') }}
+          restore-keys: |
+            ${{ runner.os }}-pytest-
       - name: Test with pytest (with coverage)
         run: |
           source $VENV

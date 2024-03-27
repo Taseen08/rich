@@ -35,7 +35,7 @@ def cell_len(text: str, _cell_len: Callable[[str], int] = cached_cell_len) -> in
         text (str): Text to display.
 
     Returns:
-        int: Get the number of cells required to display text.
+        int: Get the number of cells required to display texts.
     """
     if len(text) < 512:
         return _cell_len(text)
