@@ -53,11 +53,11 @@ jobs:
           exit "$exitcode"
         continue-on-error: true
       - name: Create issue on failure
-        if: ${{ steps.tests.outputs.exitcode }} == '1'
+        if: ${{ steps.tests.outputs.exitcode == '1' }}
         run: |
           echo "A test has failed. If you would like to run the rest of the test suite, go to this link and manually run the workflow: https://github.com/Taseen08/rich/actions/workflows/finishpythonpackage.yml"
       - name: Upload code coverage
-        if: ${{ steps.tests.outputs.exitcode }} == '0'
+        if: ${{ steps.tests.outputs.exitcode == '0' }}
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
