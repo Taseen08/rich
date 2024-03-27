@@ -21,7 +21,7 @@ def cached_cell_len(text: str) -> int:
         text (str): Text to display.
 
     Returns:
-        int: Get the number of cells required to display text.
+        int: Get the number of cells required to display texts.
     """
     _get_size = get_character_cell_size
     total_size = sum(_get_size(character) for character in text)
