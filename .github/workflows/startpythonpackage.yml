@@ -8,7 +8,7 @@ name: Initiate Test Rich Module
 on: [push]
 
 jobs:
-  test:
+  initial_test_run:
     runs-on: ubuntu-latest
     outputs:
       exitcode: ${{ steps.tests.outputs.exitcode }}
