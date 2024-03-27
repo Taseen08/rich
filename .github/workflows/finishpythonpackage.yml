@@ -20,17 +20,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           architecture: x64
-      - name: Cache Poetry cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pypoetry
-          key: poetry-cache-${{ runner.os }}-${{ steps.setup_python.outputs.python-version }}-${{ env.POETRY_VERSION }}
-          # virtualenv cache should depends on OS, Python version and `poetry.lock` (and optionally workflow files).
-      - name: Cache Packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.local
-          key: poetry-local-${{ runner.os }}-${{ steps.setup_python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
       - name: Install and configure Poetry
         # TODO: workaround for https://github.com/snok/install-poetry/issues/94
         uses: snok/install-poetry@v1.3.3
@@ -40,6 +29,17 @@ jobs:
       - name: Install dependencies
         run: poetry install
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+      - name: Cache Poetry cache
+        uses: actions/cache@v3
+        with:
+          path: .cache/pypoetry
+          key: poetry-cache-${{ runner.os }}-${{ steps.setup_python.outputs.python-version }}-${{ env.POETRY_VERSION }}
+          # virtualenv cache should depends on OS, Python version and `poetry.lock` (and optionally workflow files).
+      - name: Cache Packages
+        uses: actions/cache@v3
+        with:
+          path: .cache/local
+          key: poetry-local-${{ runner.os }}-${{ steps.setup_python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
       - name: Cache .pytest_cache directory
         uses: actions/cache@v3
         id: pytest-cache
