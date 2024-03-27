@@ -40,6 +40,10 @@ def test_cell_len():
     assert Text("😀").cell_len == 2
 
 
+def test_cell_len_large_text():
+    assert Text("a" * 10**8).cell_len == 10**8
+
+
 def test_bool():
     assert Text("foo")
     assert not Text("")
@@ -981,3 +985,4 @@ def test_extend_style():
     text.extend_style(2)
     assert text.plain == "foo bar  "
     assert text.spans == [Span(0, 3, "red"), Span(4, 9, "bold")]
+    
