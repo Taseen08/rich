@@ -54,13 +54,8 @@ jobs:
         continue-on-error: true
       - name: Create issue on failure
         if: ${{ steps.tests.outputs.exitcode }} == '1'
-        uses: octokit/request-action@v2.x
-        with:
-          route: POST /repos/{owner}/{repo}/issues
-          title: Test failed
-          body: The tests failed. Click here to rerun the workflow.
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "A test has failed. If you would like to run the rest of the test suite, go to this link and manually run the workflow: https://github.com/Taseen08/rich/actions/workflows/finishpythonpackage.yml"
       - name: Upload code coverage
         if: ${{ steps.tests.outputs.exitcode }} == '0'
         uses: codecov/codecov-action@v3
