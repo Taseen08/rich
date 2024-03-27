@@ -49,8 +49,7 @@ jobs:
         run: |
           source $VENV
           pytest tests -v -x --cov=./rich --cov-report=xml:./coverage.xml --cov-report term-missing --rank --rank-weight=1-0-0
-          echo "exitcode=$?" >> $GITHUB_OUTPUT
-          exit "$exitcode"
+          echo "::set-output name=exitcode::$?"
         continue-on-error: true
       - name: Create issue on failure
         if: ${{ steps.tests.outputs.exitcode == '1' }}
