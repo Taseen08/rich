@@ -43,12 +43,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pytest-
       - name: Test with pytest (with coverage)
+        id: tests
         run: |
           source $VENV
           pytest tests -v -x --cov=./rich --cov-report=xml:./coverage.xml --cov-report term-missing --rank --rank-weight=1-0-0
+          echo "exitcode=$?" >> $GITHUB_OUTPUT
+          exit "$exitcode"
         continue-on-error: true
       - name: Create issue on failure
-        if: ${{ failure() }}
+        if: $GITHUB_OUTPUT == 'exitcode=1'
         uses: octokit/request-action@v2.x
         with:
           route: POST /repos/{owner}/{repo}/issues
@@ -57,7 +60,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload code coverage
-        if: ${{ success() }}
+        if: $GITHUB_OUTPUT == 'exitcode=0'
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
