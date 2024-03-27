@@ -1386,9 +1386,14 @@ class Console:
                 extra_lines = render_options.height - len(lines)
                 if extra_lines > 0:
                     pad_line = [
-                        [Segment(" " * render_options.max_width, style), Segment("\n")]
-                        if new_lines
-                        else [Segment(" " * render_options.max_width, style)]
+                        (
+                            [
+                                Segment(" " * render_options.max_width, style),
+                                Segment("\n"),
+                            ]
+                            if new_lines
+                            else [Segment(" " * render_options.max_width, style)]
+                        )
                     ]
                     lines.extend(pad_line * extra_lines)
 
@@ -1437,9 +1442,11 @@ class Console:
             rich_text.overflow = overflow
         else:
             rich_text = Text(
-                _emoji_replace(text, default_variant=self._emoji_variant)
-                if emoji_enabled
-                else text,
+                (
+                    _emoji_replace(text, default_variant=self._emoji_variant)
+                    if emoji_enabled
+                    else text
+                ),
                 justify=justify,
                 overflow=overflow,
                 style=style,
