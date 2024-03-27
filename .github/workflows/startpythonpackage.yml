@@ -51,7 +51,7 @@ jobs:
           exit "$exitcode"
         continue-on-error: true
       - name: Create issue on failure
-        if: $GITHUB_OUTPUT == 'exitcode=1'
+        if: ${{ GITHUB_OUTPUT }} == 'exitcode=1'
         uses: octokit/request-action@v2.x
         with:
           route: POST /repos/{owner}/{repo}/issues
@@ -60,7 +60,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload code coverage
-        if: $GITHUB_OUTPUT == 'exitcode=0'
+        if: ${{ GITHUB_OUTPUT }} == 'exitcode=0'
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
