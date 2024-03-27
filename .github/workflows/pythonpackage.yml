@@ -1,6 +1,6 @@
 name: Test Rich module
 
-on: [pull_request]
+on: [push]
 
 jobs:
   build:

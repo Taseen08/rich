@@ -40,6 +40,11 @@ def test_cell_len():
     assert Text("😀").cell_len == 2
 
 
+def test_cell_len_large_text():
+    assert Text("a" * 10**8).cell_len == 10**8
+    assert Text("😀" * 10**8).cell_len == 2 * 10**8
+
+
 def test_bool():
     assert Text("foo")
     assert not Text("")
