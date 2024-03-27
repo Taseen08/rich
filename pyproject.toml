@@ -41,6 +41,7 @@ jupyter = ["ipywidgets"]
 pytest = "^7.0.0"
 black = "^22.6"
 mypy = "^0.971"
+pytest-ranking = "^0.2.7"
 pytest-cov = "^3.0.0"
 pytest-testmon = "^2.0.15"
 attrs = "^21.4.0"
