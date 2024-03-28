@@ -5,6 +5,10 @@ on:
      paths:
        - 'rich/**'
        - 'tests/**'
+   push:
+     paths:
+       - 'rich/**'
+       - 'tests/**'
 
 jobs:
   initial_test_run:
