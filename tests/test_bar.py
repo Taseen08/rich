@@ -6,7 +6,7 @@ from rich.style import Style
 from .render import render
 
 
-# test commit
+# test commit, more changes
 def test_init():
     bar = ProgressBar(completed=50)
     repr(bar)
