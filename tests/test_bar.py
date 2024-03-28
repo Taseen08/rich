@@ -6,11 +6,10 @@ from rich.style import Style
 from .render import render
 
 
-# test commit, more changes
 def test_init():
     bar = ProgressBar(completed=50)
     repr(bar)
-    assert bar.percentage_completed == 60.0
+    assert bar.percentage_completed == 50.0
 
 
 def test_update():
