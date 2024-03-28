@@ -7,6 +7,7 @@ from .render import render
 
 
 # make a change
+# make another change
 def test_init():
     bar = ProgressBar(completed=50)
     repr(bar)
