@@ -2,8 +2,11 @@ name: Copy HTML to Benchmarks Repository
 
 on:
   push:
-    branches:
-      - master
+    paths:
+      - 'asvhashfile'
+  pull_request:
+    paths:
+      - 'asvhashfile'
 
 permissions:
   contents: write
@@ -37,11 +40,15 @@ jobs:
 
       - name: Commit and push changes to the target repository
         run: |
-            cd dest
-            git config --local user.email "mahzabinrashidfariha@gmail.com"
-            git config --local user.name "mahzabinrashid"
-            git add .
+          cd dest
+          git config --local user.email "mahzabinrashidfariha@gmail.com"
+          git config --local user.name "mahzabinrashid"
+          git add .
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
             git commit -m "Update HTML benchmarks"
             git -c http.extraheader="AUTHORIZATION: bearer ${{ secrets.BENCHMARK_TOKEN }}" push
+            fi
   
 
