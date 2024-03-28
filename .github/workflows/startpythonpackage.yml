@@ -1,11 +1,9 @@
 name: Initiate Test Rich Module
 
-# on:
-#   pull_request:
-#     paths:
-#       - 'rich/**'
-
-on: [push]
+on:
+   pull_request:
+     paths:
+       - 'rich/**'
 
 jobs:
   initial_test_run:
