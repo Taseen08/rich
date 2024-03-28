@@ -40,7 +40,7 @@ def cell_len(text: str, _cell_len: Callable[[str], int] = cached_cell_len) -> in
     if len(text) < 512:
         return _cell_len(text)
     _get_size = get_character_cell_size
-    total_size = sum(_get_size(character) for character in text) * 2
+    total_size = sum(_get_size(character) for character in text)
     return total_size
 
 
