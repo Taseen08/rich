@@ -444,4 +444,23 @@ For some examples of projects using Rich, see the [Rich Gallery](https://www.tex
 
 Would you like to add your own project to the gallery? You can! Follow [these instructions](https://www.textualize.io/gallery-instructions).
 
+# Benchmarking
+
+Details about Benchmarking can be found in [this README.md](https://github.com/Taseen08/rich/tree/master/benchmarks#readme) file. A more in-depth process of replicating the 2 workflows can be seen in the Replicability section of Improvement 2 (Monitoring - Improve Benchmarks) under the Evaluation Report.
+
+Manual Process:
+
+1. Ensure any tags you wish to benchmark are included in the file `asvhashfile` at the root of the repo.
+2. Run the benchmarks for those tags by running `asv run HASHFILE:asvhashfile`. This will take several minutes.
+3. Create the HTML locally for those benchmarks by running `asv publish`.
+4. Run `asv preview` to launch a local webserver that will let you preview the benchmarks dashboard. Navigate to the URL this command gives you and check everything looks fine.
+5. Checkout the `rich-benchmarks` repo from [here](https://github.com/Textualize/rich-benchmarks) and `cd` into it.
+6. Copy the HTML you generated earlier into the root of this repo, e.g. `cp -r ../rich/benchmarks/html/* .` (assuming you checked out `rich-benchmarks` alongside `rich` in your filesystem)
+7. When the HTML is merged into `main`, the [benchmark dashboard](https://textualize.github.io/rich-benchmarks/) will be updated via a GitHub Action.
+
+Automated Process:
+
+1. Run `./run_benchmarks.sh <tag_name>` where `tag_name` is the new tag you want to monitor using asv.
+2. When your changes are pushed to the master branch, the benchmarking dashboard will be updated automatically via a GitHub Action.
+
 <!-- This is a test, no need to translate -->
